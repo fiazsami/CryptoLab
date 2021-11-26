@@ -11,7 +11,7 @@ a {
 
 table {
   border-collapse: collapse;
-  display: inline-block;
+  margin: 0 auto;
 }
 
 td {

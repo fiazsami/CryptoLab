@@ -56,26 +56,6 @@ function updateLevel2(index, data) {
     row.bidPrice.textContent = bidPrice;
     row.askPrice.textContent = askPrice;
 
-    if (index === 0) {
-        row.bidTradeVol.textContent = toVolume(TRADE_BOOK.boughtAt(bidPrice));
-        row.askTradeVol.textContent = toVolume(TRADE_BOOK.soldAt(askPrice));
-    } else {
-        let pBid = toBid(data.bids[index - 1][0]);
-        let pAsk = toAsk(data.asks[index - 1][0]);
-        if (pBid !== bidPrice) {
-            row.bidTradeVol.textContent = toVolume(
-                TRADE_BOOK.boughtAt(bidPrice)
-            );
-        } else {
-            row.bidTradeVol.textContent = "";
-        }
-        if (pAsk !== askPrice) {
-            row.askTradeVol.textContent = toVolume(TRADE_BOOK.soldAt(askPrice));
-        } else {
-            row.askTradeVol.textContent = "";
-        }
-    }
-
     let bidColor = colorIndex(bidPrice);
     let askColor = colorIndex(askPrice);
     let spreadColor = colorIndex(spread);

@@ -12,7 +12,7 @@ const Logger = {
 
 class StreamClient {
     static toUrl(url, channel, pairs) {
-        let path = pairs.map((pair) => `${pair}usdt@${channel}`).join("/");
+        let path = pairs.map((pair) => `${pair}@${channel}`).join("/");
         return url + path;
     }
 
@@ -79,7 +79,7 @@ const URL_COM = "wss://stream.binance.com/stream?streams=";
 
 class Level2Stream {
     constructor(pairs, callback) {
-        this.url = StreamClient.toUrl(URL_COM, "depth20@100ms", pairs);
+        this.url = StreamClient.toUrl(URL_US, "depth20@100ms", pairs);
         this.streamClient = new StreamClient(this.url, (msg) => {
             msg.stream = msg.stream.split("@")[0];
             callback(msg);
@@ -88,7 +88,8 @@ class Level2Stream {
 }
 
 class Consolidator {
-    constructor(pairs) {
+    constructor(pairs, precision) {
+        PRECISION = precision + 1;
         this.books = {};
 
         this.level2 = new Level2Stream(pairs, (quote) => {
@@ -97,32 +98,5 @@ class Consolidator {
                 updateLevel2(i, quote.data);
             }
         });
-
-        this.trades = new TradeStream(pairs, (trade) => {
-            let book = this.books[trade.s];
-            if (book) {
-                let action = undefined;
-                if (this.hitBid(trade, book)) {
-                    action = -1;
-                } else if (this.takeAsk(trade, book)) {
-                    action = 1;
-                }
-
-                updateVolume({
-                    symbol: trade.s,
-                    action: action,
-                    price: trade.p,
-                    volume: trade.v,
-                });
-            }
-        });
-    }
-
-    hitBid(trade, book) {
-        return trade.p <= book.data.bids[0][0];
-    }
-
-    takeAsk(trade, book) {
-        return trade.p >= book.data.asks[0][0];
     }
 }
