@@ -1,0 +1,171 @@
+:root {
+    --bg: #111;
+    --panel: #181a1f;
+    --line: #2a2d34;
+    --text: #e8e8e8;
+    --muted: #8a8f98;
+    --accent: #00b7ff;
+    --buy: #26a69a;
+    --sell: #ef5350;
+    --warn: #f0b429;
+    color-scheme: dark;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 14px/1.4 system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: var(--accent);
+}
+
+code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+.num {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.buy {
+    color: var(--buy);
+}
+
+.sell {
+    color: var(--sell);
+}
+
+.muted {
+    color: var(--muted);
+}
+
+header.top {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 16px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    color: var(--text);
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+}
+
+.status {
+    margin-left: auto;
+    color: var(--warn);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.status.ok {
+    color: var(--buy);
+}
+
+main {
+    padding: 16px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+footer {
+    padding: 16px;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+}
+
+.notice {
+    padding: 12px 16px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+}
+
+.notice.error {
+    border-color: var(--sell);
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 10px 12px;
+    min-width: 0;
+}
+
+.panel h2 {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.panel h2 .tools {
+    margin-left: auto;
+    display: flex;
+    gap: 4px;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+button {
+    background: #23262d;
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+button:hover {
+    border-color: var(--accent);
+}
+
+button.active {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    font-weight: 500;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+kbd {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 11px;
+    padding: 0 4px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+}

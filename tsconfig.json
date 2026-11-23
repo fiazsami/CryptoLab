@@ -1,0 +1,26 @@
+{
+  // Server, shared code, scripts and tests. Node runs these .ts files directly
+  // (native type stripping), so only erasable syntax is allowed: no enums, no
+  // namespaces, no constructor parameter properties. The browser code has its
+  // own config in web/tsconfig.json.
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "types": ["node"],
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["server/**/*.ts", "shared/**/*.ts", "scripts/**/*.ts", "test/**/*.ts", "vite.config.ts", "vitest.config.ts"]
+}
